@@ -12,6 +12,8 @@ public class GunAim : MonoBehaviour
 
     private InputSystem_Actions inputActions;
 
+    private Vector2 currentRotation;
+
     void Awake()
     {
         inputActions = new();
@@ -29,32 +31,39 @@ public class GunAim : MonoBehaviour
         Cursor.lockState = CursorLockMode.None;
     }
 
+    private void Start()
+    {
+        currentRotation = new(
+            torsoTransform.localEulerAngles.x,
+            baseTransform.localEulerAngles.y
+        );
+    }
+
     void Update()
     {
         Vector2 mouseDelta = inputActions.Player.Look.ReadValue<Vector2>() * sensitivity;
 
-        // Saving the current turret's rotation
-        Vector2 currentRotation = new(
-            torsoTransform.eulerAngles.x,
-            baseTransform.eulerAngles.y
-        );
-
         // Calculating the next turret's rotation using player input
-        Vector2 updatedRotation = new(
+        currentRotation = new(
             currentRotation.x - mouseDelta.y,
             currentRotation.y + mouseDelta.x
         );
+
+        if (verticalRangeAngle != 0)
+            currentRotation.x = Mathf.Clamp(currentRotation.x, -verticalRangeAngle, verticalRangeAngle);
+        if (horizontalRangeAngle != 0)
+            currentRotation.y = Mathf.Clamp(currentRotation.y, -horizontalRangeAngle, horizontalRangeAngle);
         
         // Apply the processed rotation
-        baseTransform.eulerAngles = new(
-            baseTransform.eulerAngles.x,
-            updatedRotation.y,
-            baseTransform.eulerAngles.z
+        baseTransform.localEulerAngles = new(
+            baseTransform.localEulerAngles.x,
+            currentRotation.y,
+            baseTransform.localEulerAngles.z
             );
-        torsoTransform.eulerAngles = new(
-            updatedRotation.x,
-            torsoTransform.eulerAngles.y,
-            torsoTransform.eulerAngles.z
+        torsoTransform.localEulerAngles = new(
+            currentRotation.x,
+            torsoTransform.localEulerAngles.y,
+            torsoTransform.localEulerAngles.z
             );
     }
 }
