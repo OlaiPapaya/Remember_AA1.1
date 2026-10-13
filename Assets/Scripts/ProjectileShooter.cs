@@ -40,6 +40,6 @@ public class ProjectileShooter : MonoBehaviour
 
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
-        Destroy(newProjectile, projectileLifetime);
+        if (projectileLifetime > 0) Destroy(newProjectile, projectileLifetime);
     }
 }
