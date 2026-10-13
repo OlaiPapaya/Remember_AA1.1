@@ -279,6 +279,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GunAim
   sensitivity: 0.1
+  horizontalRangeAngle: 0
+  verticalLowerRangeAngle: 30
+  verticalUpperRangeAngle: 80
   baseTransform: {fileID: 436287000}
   torsoTransform: {fileID: 1755813703}
 --- !u!1 &219570329
@@ -957,6 +960,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 544943400}
+  - component: {fileID: 544943401}
   m_Layer: 0
   m_Name: ProjectileShooter
   m_TagString: Untagged
@@ -979,6 +983,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1755813703}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &544943401
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 544943399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01705f6cbf4d6364f8753d0d15f87c55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ProjectileShooter
+  projectile: {fileID: 4011627011407795463, guid: 5c2d92ec62d206941883ad1ee8f8ac70, type: 3}
+  shootForce: 10
+  projectileLifetime: 5
 --- !u!1 &781902641
 GameObject:
   m_ObjectHideFlags: 0

@@ -5,7 +5,8 @@ public class GunAim : MonoBehaviour
     [SerializeField] private float sensitivity = 1;
 
     [SerializeField] private float horizontalRangeAngle = 60;
-    [SerializeField] private float verticalRangeAngle = 80;
+    [SerializeField] private float verticalLowerRangeAngle = 30;
+    [SerializeField] private float verticalUpperRangeAngle = 80;
 
     [SerializeField] private Transform baseTransform;
     [SerializeField] private Transform torsoTransform;
@@ -49,8 +50,9 @@ public class GunAim : MonoBehaviour
             currentRotation.y + mouseDelta.x
         );
 
-        if (verticalRangeAngle != 0)
-            currentRotation.x = Mathf.Clamp(currentRotation.x, -verticalRangeAngle, verticalRangeAngle);
+        // Clamp current rotation to the specified limit.
+        if (verticalLowerRangeAngle != 0 && verticalUpperRangeAngle != 0)
+            currentRotation.x = Mathf.Clamp(currentRotation.x, -verticalUpperRangeAngle, verticalLowerRangeAngle);
         if (horizontalRangeAngle != 0)
             currentRotation.y = Mathf.Clamp(currentRotation.y, -horizontalRangeAngle, horizontalRangeAngle);
         
