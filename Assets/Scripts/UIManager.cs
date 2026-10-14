@@ -7,7 +7,6 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        Debug.Log(ScoreSystem.instance == null);
         if (ScoreSystem.instance != null)
             ScoreSystem.instance.OnScoreChange += ScoreChanged;
     }
