@@ -5,13 +5,14 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private TMP_Text scoreText;
 
-    private void OnEnable()
+    void Start()
     {
+        Debug.Log(ScoreSystem.instance == null);
         if (ScoreSystem.instance != null)
             ScoreSystem.instance.OnScoreChange += ScoreChanged;
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         if (ScoreSystem.instance != null)
             ScoreSystem.instance.OnScoreChange -= ScoreChanged;
@@ -19,7 +20,6 @@ public class UIManager : MonoBehaviour
 
     private void ScoreChanged(int balance)
     {
-        Debug.Log("A");
         if (scoreText == null || ScoreSystem.instance == null) return;
         scoreText.text = ScoreSystem.instance.GetScore().ToString();
     }
