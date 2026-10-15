@@ -32,7 +32,7 @@ public class TargetController : MonoBehaviour
         // and destroy it when the real target respawns again.
         GameObject brokenTarget = Instantiate(brokenTargetMesh, transform.position, transform.rotation);
         brokenTarget.transform.localScale = transform.localScale;
-        Destroy(brokenTarget, respawnTime);
+        brokenTarget.GetComponent<BrokenTargetReconstructor>().TargetDestroyed(respawnTime);
 
         targetMesh.SetActive(false);
         destroyed = true;
