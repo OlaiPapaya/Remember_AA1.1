@@ -6,7 +6,7 @@ public class ScoreSystem : MonoBehaviour
     public static ScoreSystem instance;
 
     private int currentScore;
-    public event Action<int> OnScoreChange;
+    public event Action<int, int> OnScoreChange;
 
     private void Awake()
     {
@@ -37,7 +37,7 @@ public class ScoreSystem : MonoBehaviour
             // score value previous to the change.
             score = -previousScore;
         }
-        OnScoreChange?.Invoke(score);
+        OnScoreChange?.Invoke(score, currentScore);
     }
 
     public int GetScore()
