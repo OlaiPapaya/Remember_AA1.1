@@ -7,6 +7,7 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private float shootForce = 10;
     [Tooltip("Set to 0 for infinite lifetime")]
     [SerializeField] private float projectileLifetime = 5;
+    [SerializeField] private GameObject shootParticles;
 
     private InputSystem_Actions inputActions;
 
@@ -41,5 +42,8 @@ public class ProjectileShooter : MonoBehaviour
         GameObject newProjectile = Instantiate(projectile, transform.position, transform.rotation);
         newProjectile.GetComponent<Rigidbody>().AddForce(transform.forward * shootForce, ForceMode.Impulse);
         if (projectileLifetime > 0) Destroy(newProjectile, projectileLifetime);
+
+        GameObject particles = Instantiate(shootParticles, transform.position, transform.rotation);
+        Destroy(particles, 3);
     }
 }

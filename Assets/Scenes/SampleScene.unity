@@ -1160,6 +1160,7 @@ MonoBehaviour:
   projectile: {fileID: 4011627011407795463, guid: 5c2d92ec62d206941883ad1ee8f8ac70, type: 3}
   shootForce: 15
   projectileLifetime: 5
+  shootParticles: {fileID: 6599285728709881880, guid: b807c8847e6849541a9ffa1b4c052a28, type: 3}
 --- !u!1001 &586854559
 PrefabInstance:
   m_ObjectHideFlags: 0
