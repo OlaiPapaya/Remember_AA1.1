@@ -10,6 +10,12 @@ public class ProjectileShooter : MonoBehaviour
     [SerializeField] private GameObject shootParticles;
     [SerializeField] private Animator shootAnimator;
 
+    private AudioSource shootAudioSource;
+    [SerializeField] private float SoundMinVolume;
+    [SerializeField] private float SoundMaxVolume;
+    [SerializeField] private float SoundMinPitch;
+    [SerializeField] private float SoundMaxPitch;
+
     private InputSystem_Actions inputActions;
 
     void Awake()
@@ -25,6 +31,11 @@ public class ProjectileShooter : MonoBehaviour
     private void OnDisable()
     {
         inputActions.Player.Jump.Disable();
+    }
+
+    private void Start()
+    {
+        shootAudioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -53,6 +64,15 @@ public class ProjectileShooter : MonoBehaviour
         if (shootAnimator != null)
         {
             shootAnimator.SetTrigger("Shoot");
+        }
+
+        if (shootAudioSource != null)
+        {
+            shootAudioSource.pitch = Random.Range(SoundMinPitch, SoundMaxPitch);
+            shootAudioSource.PlayOneShot(
+                shootAudioSource.clip,
+                Random.Range(SoundMinVolume, SoundMaxVolume)
+            );
         }
     }
 }

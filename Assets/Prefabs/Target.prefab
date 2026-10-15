@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6790321369351868688}
   - component: {fileID: 243189569687734786}
-  - component: {fileID: 3808238162436635956}
+  - component: {fileID: 5405810035726039154}
   m_Layer: 0
   m_Name: Target
   m_TagString: Untagged
@@ -49,7 +49,8 @@ MonoBehaviour:
   targetMesh: {fileID: 4194006264890853507}
   brokenTargetMesh: {fileID: 7165040836093943966, guid: 626e96830f29d2f4585025c3323aff88, type: 3}
   respawnTime: 3
---- !u!136 &3808238162436635956
+  destroyPoints: 100
+--- !u!136 &5405810035726039154
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -70,7 +71,7 @@ CapsuleCollider:
   serializedVersion: 2
   m_Radius: 0.5
   m_Height: 1
-  m_Direction: 2
+  m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1001 &3960198628850021842
 PrefabInstance:
