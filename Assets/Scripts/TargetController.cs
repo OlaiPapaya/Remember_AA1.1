@@ -7,8 +7,15 @@ public class TargetController : MonoBehaviour
     [SerializeField] private float respawnTime;
     [SerializeField] private int destroyPoints = 100;
 
+    private MovingObject movementScript;
+
     private bool destroyed;
     private float destroyedTime;
+
+    private void Start()
+    {
+        movementScript = GetComponent<MovingObject>();
+    }
 
     private void Update()
     {
@@ -39,11 +46,14 @@ public class TargetController : MonoBehaviour
         destroyedTime = Time.time;
 
         ScoreSystem.instance?.AddScore(destroyPoints);
+
+        if (movementScript != null) movementScript.Pause();
     }
 
     void TargetRespawn()
     {
         targetMesh.SetActive(true);
         destroyed = false;
+        if (movementScript != null) movementScript.Resume();
     }
 }

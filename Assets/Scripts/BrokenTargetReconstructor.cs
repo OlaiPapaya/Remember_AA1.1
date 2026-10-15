@@ -38,7 +38,8 @@ public class BrokenTargetReconstructor : MonoBehaviour
 
     private void Reconstruct()
     {
-        float lerpValue = Mathf.InverseLerp(timeToFinish - reconstructTime, timeToFinish, Time.time);
+        float rawLerpValue = Mathf.InverseLerp(timeToFinish - reconstructTime, timeToFinish, Time.time);
+        float lerpValue = Mathf.Cos(rawLerpValue * Mathf.PI) * -0.5f + 0.5f;
 
         for (int childIdx = 0; childIdx < piecesContainer.childCount; childIdx++)
         {

@@ -12,6 +12,8 @@ public class MovingObject : MonoBehaviour
     private int currentDestinationIdx = 0;
     private Vector3 currentMovement;
 
+    private bool paused;
+
     private void Start()
     {
         if (destinations.Count <= 0)
@@ -23,6 +25,7 @@ public class MovingObject : MonoBehaviour
 
     void Update()
     {
+        if (paused) return;
         CheckDestinationArrival();
         Movement();
     }
@@ -42,5 +45,16 @@ public class MovingObject : MonoBehaviour
         currentMovement += dirToDestination * acceleration * Time.deltaTime;
         currentMovement = Vector3.ClampMagnitude(currentMovement, 1);
         transform.position += currentMovement * speed * Time.deltaTime;
+    }
+
+    public void Pause()
+    {
+        paused = true;
+        currentMovement = Vector2.zero;
+    }
+
+    public void Resume()
+    {
+        paused = false;
     }
 }
